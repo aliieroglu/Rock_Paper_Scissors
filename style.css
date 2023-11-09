@@ -20,7 +20,12 @@ h1{
     
 }
 
-.score{
+.player-score{
+    justify-content: center;
+    margin-top: 14px;
+}
+
+.computer-score{
     justify-content: center;
     margin-top: 14px;
 }
@@ -29,4 +34,9 @@ h1{
     display: flex;
     justify-content: space-evenly;
     margin-top: 40px;
+}
+
+#score-div{
+    display: flex;
+    margin: 0 auto;
 }
