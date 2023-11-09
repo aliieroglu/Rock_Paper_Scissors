@@ -1,20 +1,65 @@
+const allCard = document.querySelector(".card");
 const cardStuff = document.querySelectorAll(".cardStuff");
-const score = document.querySelectorAll(".score");
+const playerScore = document.querySelector(".player-score");
+const computerScore = document.querySelector(".computer-score");
+const playerText = document.querySelector(".player");
+const computerText = document.querySelector(".computer");
+const resultText = document.querySelector(".result");
+let playerGuess;
+let computerGuess;
 
-let playerGuess = cardStuff.textContent;
-console.log(playerGuess);
 
-function eventListenars(){
-    cardStuff.addEventListenar("click",playerSelection)
+let playerScr = 0;
+let computerScr = 0;
+
+cardStuff.forEach(choice => {
+    choice.addEventListener('click', () => {
+        playerGuess = choice.textContent;
+        getComputerChoice();
+        playerText.textContent = `Player: ${playerGuess}`;
+        computerText.textContent = `Computer: ${computerGuess}`;
+        resultText.textContent = "Result: " + playRound(playerGuess,computerGuess); 
+        playerScore.textContent = playerScr;
+        computerScore.textContent = computerScr;
+    });
+});
+
+function playRound(playerGuess, computerGuess){
+    if(playerGuess == computerGuess){
+        return "It's a Draw";
+    }
+    else if(playerGuess == 'Rock'){
+        if(computerGuess == 'Scissors'){
+            playerScr++;
+            return "You win";
+        }else{
+            computerScr++;
+            return "You lose";
+        }
+    }
+    else if(playerGuess == 'Paper'){
+        if(computerGuess == 'Rock'){
+            playerScr++;
+            return "You win";
+        }else{
+            computerScr++;
+            return "You lose";
+        }
+    }
+    else if(playerGuess == 'Scissors'){
+        if(computerGuess == 'Paper'){
+            playerScr++;
+            return "You win";
+        }else{
+            computerScr++;
+            return "You lose";
+        }
+    }
 }
 
-function playerSelection(){
-    
-}
 
 function getComputerChoice(){
     const randomChoice = Math.floor(Math.random() *3) + 1;
-    let computerGuess = '';
     switch(randomChoice){
         case 1:
             computerGuess = 'Rock';
@@ -28,5 +73,4 @@ function getComputerChoice(){
         default:
             break; 
     }
-    return computerGuess;
 }
